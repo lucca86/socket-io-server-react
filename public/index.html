@@ -13,10 +13,10 @@
     >
 </head>
 <body class="container">
-    <h1 class="mt-5">MiniChat</h1>
+    <h1 class="mt-5">Acceso Denegado</h1>
     <hr>
 
-    <form id="miFormulario">
+    <!-- <form id="miFormulario">
         <div class="row">
             <div class="col-8">
                 <input type="text" id="txtMensajes" placeholder="Mensaje" class="form-control">
@@ -27,14 +27,14 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> -->
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <ul id="misMensajes" class="mt-2">
             </ul>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -51,26 +51,29 @@
     >
     </script>
     <script>
-        // const socket = io('http://localhost:8080') //en producción sería el url del hosting
-        const socket = io('https://lucca86-socket-server.herokuapp.com/')
+        const socket = io('http://localhost:8080') 
+        //const socket = io('https://lucca86-socket-server.herokuapp.com/') en producción sería el url del hosting
 
+        socket.on('connect', () => {
+            console.log('Conectado...');
+        } ) 
         // Referencia los elementos del DOM
-        const formulario = document.querySelector('#miFormulario');
-        const mensajes = document.querySelector('#misMensajes');
-        const txtMensajes = document.querySelector('#txtMensajes');
+        // const formulario = document.querySelector('#miFormulario');
+        // const mensajes = document.querySelector('#misMensajes');
+        // const txtMensajes = document.querySelector('#txtMensajes');
 
-        formulario.addEventListener( 'submit', (ev) => {
-            ev.preventDefault();
+        // formulario.addEventListener( 'submit', (ev) => {
+        //     ev.preventDefault();
 
-            const nuevoMensaje = txtMensajes.value;
+        //     const nuevoMensaje = txtMensajes.value;
             
-            socket.emit('mensaje-al-servidor', { texto: nuevoMensaje })
-        } );
+        //     socket.emit('mensaje-al-servidor', { texto: nuevoMensaje })
+        // } );
 
-        socket.on('mensaje-desde-servidor', (data) => {
+        // socket.on('mensaje-desde-servidor', (data) => {
             
-            mensajes.innerHTML += `<li>${data.texto}</li> `
-        })
+        //     mensajes.innerHTML += `<li>${data.texto}</li> `
+        // })
 
         // socket.on('mensaje-bienvenida', ( data ) => {
         //     console.log( data );
